@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHOPAHOLIC | Everything You Love</title>
+
+<style>
+:root {
+  --plum: #493344;
+  --pink: #c96f91;
+  --light: #fff7fa;
+  --muted: #927d88;
+  --line: #efdce4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fffaf8;
+  color: #42323a;
+}
+
+header {
+  background: var(--plum);
+  color: white;
+  padding: 18px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #ffc6dc;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover { color: #ffc6dc; }
+
+.hero {
+  min-height: 430px;
+  padding: 7%;
+  display: flex;
+  align-items: center;
+  color: white;
+  background:
+    linear-gradient(90deg,rgba(35,15,27,.78),rgba(35,15,27,.15)),
+    url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600')
+    center/cover;
+}
+
+.hero-content { max-width: 620px; }
+
+.hero h1 {
+  font-size: clamp(40px,7vw,68px);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 19px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 28px;
+  padding: 12px 21px;
+  background: var(--pink);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover {
+  background: #914966;
+  transform: translateY(-2px);
+}
+
+.btn.secondary {
+  background: #f2e5eb;
+  color: var(--plum);
+}
+
+.btn.small {
+  padding: 8px 13px;
+  font-size: 13px;
+}
+
+section { padding: 55px 6%; }
+
+.section-title {
+  text-align: center;
+  color: var(--plum);
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin: 0 auto 28px;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 15px;
+  padding: 28px 6%;
+  background: #fff1f6;
+}
+
+.feature {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px #49334410;
+}
+
+.feature b {
+  display: block;
+  color: var(--plum);
+  margin: 8px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.search, .toolbar select {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  background: white;
+  font-size: 14px;
+  min-width: 190px;
+  outline-color: var(--pink);
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 24px;
+}
+
+.category-btn {
+  padding: 9px 16px;
+  border: 1px solid #d9a6ba;
+  background: white;
+  color: var(--plum);
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.category-btn.active,
+.category-btn:hover {
+  background: var(--plum);
+  color: white;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 22px;
+}
+
+.product {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #49334415;
+  transition: .25s;
+  position: relative;
+}
+
+.product:hover { transform: translateY(-5px); }
+
+.product img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #f2e8ed;
+}
+
+.product-info {
+  padding: 16px;
+  text-align: center;
+}
+
+.product-info h3 {
+  color: var(--plum);
+  font-size: 17px;
+  margin-bottom: 7px;
+}
+
+.product-info p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.price {
+  font-size: 19px !important;
+  color: #c35f87 !important;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.product-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heart {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: 0;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: white;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.panel {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 5px 25px #49334415;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.cart-item img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.cart-item .item-name {
+  min-width: 130px;
+  flex: 1;
+}
+
+.cart-total {
+  text-align: right;
+  margin: 22px 0;
+  font-size: 23px;
+  color: var(--plum);
+  font-weight: bold;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-grid .full { grid-column: 1/-1; }
+
+label {
+  display: block;
+  color: #6d5361;
+  font-size: 14px;
+  margin: 8px 0 5px;
+}
+
+input, textarea, select { font: inherit; }
+
+.customer-box input,
+.customer-box textarea,
+.customer-box select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  outline-color: var(--pink);
+}
+
+textarea { resize: vertical; }
+
+#message {
+  margin-top: 14px;
+  color: green;
+  font-weight: bold;
+}
+
+.order-card {
+  background: white;
+  padding: 20px;
+  border-radius: 13px;
+  margin: 14px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 15px #00000010;
+  line-height: 1.7;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 22px;
+}
+
+footer {
+  background: var(--plum);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  line-height: 2;
+}
+
+footer h2 {
+  color: #ffc6dc;
+  letter-spacing: 3px;
+}
+
+footer a { color: #ffc6dc; }
+
+@media(max-width:650px) {
+  header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  nav { justify-content: center; }
+  .hero { min-height: 350px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full { grid-column: auto; }
+  section { padding: 42px 5%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">SHOPAHOLIC ♡</div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#wishlist">Wishlist</a>
+    <a href="#cart">Cart 🛒</a>
+    <a href="#customer">My Details</a>
+    <a href="#orders">Orders</a>
+  </nav>
+</header>
+
+<div class="hero" id="home">
+  <div class="hero-content">
+    <h1>SHOP YOUR<br>HEART OUT!</h1>
+    <p>Fashion, toys, books, games and little things that make you smile — all in one place.</p>
+    <button class="btn"
+      onclick="document.getElementById('shop').scrollIntoView()">
+      Explore Collection ♡
+    </button>
+  </div>
+</div>
+
+<div class="features">
+  <div class="feature">🚚<b>Easy Shopping</b><span>Browse all your favourites</span></div>
+  <div class="feature">💗<b>Wishlist</b><span>Save items you love</span></div>
+  <div class="feature">🛍️<b>Shopping Cart</b><span>Update quantities anytime</span></div>
+  <div class="feature">📦<b>Order History</b><span>See your demo orders</span></div>
+</div>
+
+<section id="shop">
+  <h2 class="section-title">♡ Explore Our Collections ♡</h2>
+  <p class="subtitle">Choose a category, search for an item, or sort the collection to find exactly what you want.</p>
+
+  <div class="toolbar">
+    <input class="search" id="search" type="search"
+      placeholder="Search products..." oninput="displayProducts()">
+
+    <select id="sort" onchange="displayProducts()">
+      <option value="default">Sort: Featured</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+      <option value="az">Name: A to Z</option>
+    </select>
+  </div>
+
+  <div class="categories" id="categories"></div>
+  <div class="products" id="productList"></div>
+</section>
+
+<section id="wishlist">
+  <h2 class="section-title">♡ My Wishlist ♡</h2>
+  <p class="subtitle">Your saved favourites in one place.</p>
+  <div class="products" id="wishlistItems"></div>
+</section>
+
+<section id="cart">
+  <h2 class="section-title">♡ My Shopping Cart ♡</h2>
+  <p class="subtitle">Review your items and update quantities before placing your demo order.</p>
+
+  <div class="panel">
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+      Total: ₹<span id="total">0</span>
+    </div>
+
+    <button class="btn" onclick="checkout()">Place My Order ♡</button>
+    <button class="btn secondary" onclick="clearCart()">Clear Cart</button>
+  </div>
+</section>
+
+<section id="customer">
+  <h2 class="section-title">♡ Customer Information ♡</h2>
+  <p class="subtitle">Enter your contact and delivery details. Your details are saved only in this browser for this demo.</p>
+
+  <div class="panel customer-box">
+    <form id="customerForm">
+
+      <div class="form-grid">
+
+        <div>
+          <label for="name">Full Name</label>
+          <input id="name" required placeholder="Enter your full name">
+        </div>
+
+        <div>
+          <label for="email">Email Address</label>
+          <input id="email" type="email" required placeholder="name@example.com">
+        </div>
+
+        <div>
+          <label for="phone">Phone Number</label>
+          <input id="phone" type="tel" pattern="[0-9]{10}"
+            maxlength="10" required placeholder="10-digit mobile number">
+        </div>
+
+        <div>
+          <label for="city">City</label>
+          <input id="city" required placeholder="Enter your city">
+        </div>
+
+        <div class="full">
+          <label for="address">House / Street Address</label>
+          <textarea id="address" rows="3" required
+            placeholder="Enter your delivery address"></textarea>
+        </div>
+
+        <div>
+          <label for="pincode">PIN Code</label>
+          <input id="pincode" pattern="[0-9]{6}" maxlength="6"
+            required placeholder="6-digit PIN code">
+        </div>
+
+        <div>
+          <label for="payment">Payment Preference</label>
+          <select id="payment" required>
+            <option value="">Choose payment method</option>
+            <option>Cash on Delivery</option>
+            <option>UPI (demo only)</option>
+            <option>Card (demo only)</option>
+          </select>
+        </div>
+
+        <div class="full">
+          <label for="notes">Delivery Notes (optional)</label>
+          <textarea id="notes" rows="2"
+            placeholder="Landmark or delivery instructions"></textarea>
+        </div>
+
+      </div>
+
+      <br>
+      <button class="btn" type="submit">Save My Information ♡</button>
+    </form>
+
+    <p id="message"></p>
+  </div>
+</section>
+
+<section id="orders">
+  <h2 class="section-title">♡ My Orders ♡</h2>
+  <p class="subtitle">Your order history from this browser.</p>
+  <div id="orderHistory"></div>
+</section>
+
+<footer>
+  <h2>SHOPAHOLIC ♡</h2>
+  <p>Your happiness is our shopping destination!</p>
+  <p>Clothing | Toys | Accessories | Shoes | Books | Games</p>
+  <p>Demo shopping website created with HTML, CSS and JavaScript.</p>
+  <p>© 2026 SHOPAHOLIC. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+// ===================================
+// PRODUCT DATABASE - 48 PRODUCTS
+// ===================================
+
+const products = [
+{id:1,name:"Floral Summer Dress",category:"Women's Wear",price:899,image:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600"},
+{id:2,name:"Elegant Pink Dress",category:"Women's Wear",price:1299,image:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600"},
+{id:3,name:"Casual Everyday Outfit",category:"Women's Wear",price:999,image:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600"},
+{id:4,name:"Classic White Blouse",category:"Women's Wear",price:749,image:"https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=600"},
+{id:5,name:"Denim Jacket",category:"Women's Wear",price:1599,image:"https://images.unsplash.com/photo-1543076447-215ad9ba6923?w=600"},
+{id:6,name:"Party Wear Top",category:"Women's Wear",price:699,image:"https://images.unsplash.com/photo-1564257577-7a9f3c8d7f2b?w=600"},
+
+{id:7,name:"Men's Casual Shirt",category:"Men's Wear",price:699,image:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600"},
+{id:8,name:"Men's Denim Jacket",category:"Men's Wear",price:1599,image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600"},
+{id:9,name:"Men's Smart Outfit",category:"Men's Wear",price:1199,image:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600"},
+{id:10,name:"Striped Polo T-Shirt",category:"Men's Wear",price:599,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600"},
+{id:11,name:"Formal Trousers",category:"Men's Wear",price:999,image:"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600"},
+{id:12,name:"Hooded Sweatshirt",category:"Men's Wear",price:1099,image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600"},
+
+{id:13,name:"Kids Party Dress",category:"Kids' Wear",price:599,image:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600"},
+{id:14,name:"Cute Kids Outfit",category:"Kids' Wear",price:499,image:"https://images.unsplash.com/photo-1503919005314-30d93d07d823?w=600"},
+{id:15,name:"Baby Romper",category:"Kids' Wear",price:399,image:"https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600"},
+{id:16,name:"Kids Printed T-Shirt",category:"Kids' Wear",price:349,image:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600"},
+{id:17,name:"Little Explorer Jacket",category:"Kids' Wear",price:799,image:"https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?w=600"},
+{id:18,name:"Comfy Kids Hoodie",category:"Kids' Wear",price:549,image:"https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600"},
+
+{id:19,name:"Cute Teddy Bear",category:"Toys",price:399,image:"https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600"},
+{id:20,name:"Building Blocks Set",category:"Toys",price:549,image:"https://images.unsplash.com/photo-1599623560574-39d485900c95?w=600"},
+{id:21,name:"Colourful Toy Train",category:"Toys",price:699,image:"https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600"},
+{id:22,name:"Toy Dinosaur",category:"Toys",price:299,image:"https://images.unsplash.com/photo-1558679908-541bcf1249ff?w=600"},
+{id:23,name:"Soft Plush Bunny",category:"Toys",price:449,image:"https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600"},
+{id:24,name:"Mini Toy Car Set",category:"Toys",price:499,image:"https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600"},
+
+{id:25,name:"Designer Handbag",category:"Accessories",price:1199,image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"},
+{id:26,name:"Stylish Sunglasses",category:"Accessories",price:499,image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600"},
+{id:27,name:"Classic Wrist Watch",category:"Accessories",price:1499,image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"},
+{id:28,name:"Minimal Gold Necklace",category:"Accessories",price:799,image:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600"},
+{id:29,name:"Everyday Backpack",category:"Accessories",price:999,image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600"},
+{id:30,name:"Pearl Earring Set",category:"Accessories",price:399,image:"https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600"},
+
+{id:31,name:"Red Sports Sneakers",category:"Shoes",price:1499,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"},
+{id:32,name:"Women's Stylish Heels",category:"Shoes",price:999,image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600"},
+{id:33,name:"Classic Casual Shoes",category:"Shoes",price:1299,image:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600"},
+{id:34,name:"Canvas Sneakers",category:"Shoes",price:899,image:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600"},
+{id:35,name:"Leather Formal Shoes",category:"Shoes",price:1799,image:"https://images.unsplash.com/photo-1614252369475-531000000000?w=600"},
+{id:36,name:"Comfy Slides",category:"Shoes",price:499,image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=600"},
+
+{id:37,name:"Mystery Reading Novel",category:"Reading Books",price:299,image:"https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600"},
+{id:38,name:"Adventure Story Book",category:"Reading Books",price:399,image:"https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600"},
+{id:39,name:"Knowledge & Learning Book",category:"Reading Books",price:349,image:"https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=600"},
+{id:40,name:"Classic Literature",category:"Reading Books",price:449,image:"https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600"},
+{id:41,name:"Creative Writing Journal",category:"Reading Books",price:249,image:"https://images.unsplash.com/photo-1455390582262-044c435e2d4a?w=600"},
+{id:42,name:"Travel Photography Book",category:"Reading Books",price:599,image:"https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600"},
+
+{id:43,name:"Colourful Board Game",category:"Games",price:599,image:"https://images.unsplash.com/photo-1606503153255-59d8b8b821a0?w=600"},
+{id:44,name:"Chess Board Game",category:"Games",price:449,image:"https://images.unsplash.com/photo-1586165368502-1bad197a6461?w=600"},
+{id:45,name:"Fun Tabletop Game",category:"Games",price:699,image:"https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=600"},
+{id:46,name:"Jigsaw Puzzle",category:"Games",price:349,image:"https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600"},
+{id:47,name:"Playing Cards",category:"Games",price:199,image:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=600"},
+{id:48,name:"Wooden Strategy Game",category:"Games",price:799,image:"https://images.unsplash.com/photo-1566694271453-390536dd1f0d?w=600"}
+];
+
+// ===================================
+// WEBSITE DATA
+// ===================================
+
+const categoryNames = [
+  "All",
+  "Women's Wear",
+  "Men's Wear",
+  "Kids' Wear",
+  "Toys",
+  "Accessories",
+  "Shoes",
+  "Reading Books",
+  "Games"
+];
+
+let selectedCategory = "All";
+
+let cart = JSON.parse(
+  localStorage.getItem("shopaholicCart") || "[]"
+);
+
+let wishlist = JSON.parse(
+  localStorage.getItem("shopaholicWishlist") || "[]"
+);
+
+let customer = JSON.parse(
+  localStorage.getItem("shopaholicCustomer") || "null"
+);
+
+let orders = JSON.parse(
+  localStorage.getItem("shopaholicOrders") || "[]"
+);
+
+function money(n) {
+  return Number(n).toLocaleString("en-IN");
+}
+
+function save(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+// ===================================
+// DISPLAY CATEGORY BUTTONS
+// ===================================
+
+function displayCategories() {
+  const box = document.getElementById("categories");
+  box.innerHTML = "";
+
+  categoryNames.forEach(name => {
+    const b = document.createElement("button");
+
+    b.className = "category-btn" +
+      (name === selectedCategory ? " active" : "");
+
+    b.textContent = name;
+
+    b.onclick = () => {
+      selectedCategory = name;
+      displayCategories();
+      displayProducts();
+    };
+
+    box.appendChild(b);
+  });
+}
+
+// ===================================
+// PRODUCT CARDS
+// ===================================
+
+function productCard(p, showHeart = true) {
+  return `
+    <article class="product">
+
+      ${showHeart ? `
+        <button class="heart"
+          aria-label="Add to wishlist"
+          onclick="toggleWishlist(${p.id})">
+          ${wishlist.includes(p.id) ? "♥" : "♡"}
+        </button>
+      ` : ""}
+
+      <img
+        src="${p.image}"
+        alt="${p.name}"
+        loading="lazy"
+        onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=SHOPAHOLIC'">
+
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p>${p.category}</p>
+        <p class="price">₹${money(p.price)}</p>
+
+        <div class="product-actions">
+          <button class="btn small"
+            onclick="addToCart(${p.id})">
+            Add to Cart +
+          </button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+// ===================================
+// DISPLAY PRODUCTS
+// ===================================
+
+function displayProducts() {
+
+  const term = document
+    .getElementById("search")
+    .value.toLowerCase();
+
+  let list = products.filter(p =>
+    (selectedCategory === "All" ||
+      p.category === selectedCategory) &&
+    (p.name.toLowerCase().includes(term) ||
+      p.category.toLowerCase().includes(term))
+  );
+
+  const sort = document.getElementById("sort").value;
+
+  if (sort === "low")
+    list.sort((a,b) => a.price - b.price);
+
+  if (sort === "high")
+    list.sort((a,b) => b.price - a.price);
+
+  if (sort === "az")
+    list.sort((a,b) => a.name.localeCompare(b.name));
+
+  document.getElementById("productList").innerHTML =
+    list.length
+      ? list.map(p => productCard(p)).join("")
+      : '<p class="empty">No products found. Try another search.</p>';
+}
+
+// ===================================
+// WISHLIST
+// ===================================
+
+function toggleWishlist(id) {
+
+  wishlist = wishlist.includes(id)
+    ? wishlist.filter(x => x !== id)
+    : [...wishlist, id];
+
+  save("shopaholicWishlist", wishlist);
+
+  displayProducts();
+  displayWishlist();
+}
+
+function displayWishlist() {
+
+  const list = products.filter(p =>
+    wishlist.includes(p.id)
+  );
+
+  document.getElementById("wishlistItems").innerHTML =
+    list.length
+      ? list.map(p => productCard(p)).join("")
+      : '<p class="empty">Your wishlist is empty. Tap ♡ on a product to save it.</p>';
+}
+
+// ===================================
+// ADD TO CART
+// ===================================
+
+function addToCart(id) {
+
+  const p = products.find(x => x.id === id);
+  const found = cart.find(x => x.id === id);
+
+  if (found) {
+    found.quantity++;
+  } else {
+    cart.push({...p, quantity:1});
+  }
+
+  save("shopaholicCart", cart);
+  displayCart();
+
+  alert(p.name + " added to your cart!");
+}
+
+// ===================================
+// DISPLAY CART
+// ===================================
+
+function displayCart() {
+
+  const box = document.getElementById("cartItems");
+  let total = 0;
+
+  if (!cart.length) {
+    box.innerHTML =
+      '<p class="empty">Your shopping cart is empty ♡</p>';
+
+    document.getElementById("total").textContent = "0";
+    return;
+  }
+
+  box.innerHTML = cart.map(item => {
+
+    const amount = item.price * item.quantity;
+    total += amount;
+
+    return `
+      <div class="cart-item">
+
+        <img src="${item.image}" alt="${item.name}">
+
+        <div class="item-name">
+          <b>${item.name}</b>
+          <p>₹${money(item.price)} each</p>
+        </div>
+
+        <div>
+          <button class="btn small secondary"
+            onclick="changeQuantity(${item.id},-1)">−</button>
+
+          <b>${item.quantity}</b>
+
+          <button class="btn small secondary"
+            onclick="changeQuantity(${item.id},1)">+</button>
+        </div>
+
+        <b>₹${money(amount)}</b>
+
+        <button class="btn small"
+          onclick="removeItem(${item.id})">
+          Remove
+        </button>
+
+      </div>
+    `;
+
+  }).join("");
+
+  document.getElementById("total").textContent = money(total);
+}
+
+// ===================================
+// CHANGE QUANTITY
+// ===================================
+
+function changeQuantity(id, delta) {
+
+  const item = cart.find(x => x.id === id);
+
+  if (!item) return;
+
+  item.quantity += delta;
+
+  if (item.quantity <= 0) {
+    removeItem(id);
+  } else {
+    save("shopaholicCart", cart);
+    displayCart();
+  }
+}
+
+// ===================================
+// REMOVE PRODUCT
+// ===================================
+
+function removeItem(id) {
+
+  cart = cart.filter(x => x.id !== id);
+
+  save("shopaholicCart", cart);
+  displayCart();
+}
+
+// ===================================
+// CLEAR CART
+// ===================================
+
+function clearCart() {
+
+  if (!cart.length) return;
+
+  if (confirm("Clear all items from your cart?")) {
+    cart = [];
+    save("shopaholicCart", cart);
+    displayCart();
+  }
+}
+
+// ===================================
+// CUSTOMER INFORMATION
+// ===================================
+
+document.getElementById("customerForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  customer = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    city: document.getElementById("city").value,
+    address: document.getElementById("address").value,
+    pincode: document.getElementById("pincode").value,
+    payment: document.getElementById("payment").value,
+    notes: document.getElementById("notes").value
+  };
+
+  save("shopaholicCustomer", customer);
+
+  document.getElementById("message").textContent =
+    "Your information has been saved successfully ♡";
+});
+
+// ===================================
+// LOAD CUSTOMER INFORMATION
+// ===================================
+
+function loadCustomer() {
+
+  if (!customer) return;
+
+  ["name","email","phone","city","address",
+   "pincode","payment","notes"].forEach(k => {
+
+    document.getElementById(k).value =
+      customer[k] || "";
+
+  });
+}
+
+// ===================================
+// CHECKOUT
+// ===================================
+
+function checkout() {
+
+  if (!cart.length) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  if (!customer) {
+    alert("Please save your customer information first.");
+
+    document.getElementById("customer")
+      .scrollIntoView();
+
+    return;
+  }
+
+  const total = cart.reduce(
+    (sum,x) => sum + x.price * x.quantity,
+    0
+  );
+
+  orders.push({
+
+    orderId: "SHOP" + Date.now(),
+
+    date: new Date().toLocaleString(),
+
+    customer: customer.name,
+
+    items: cart.map(x => ({
+      name: x.name,
+      quantity: x.quantity
+    })),
+
+    total: total,
+
+    status: "Order Placed"
+
+  });
+
+  save("shopaholicOrders", orders);
+
+  cart = [];
+
+  save("shopaholicCart", cart);
+
+  displayCart();
+  displayOrders();
+
+  alert(
+    "Thank you, " + customer.name +
+    "! Your demo order has been placed."
+  );
+
+  document.getElementById("orders")
+    .scrollIntoView();
+}
+
+// ===================================
+// ORDER HISTORY
+// ===================================
+
+function displayOrders() {
+
+  const box = document.getElementById("orderHistory");
+
+  if (!orders.length) {
+
+    box.innerHTML =
+      '<p class="empty">No orders yet. Your placed orders will appear here.</p>';
+
+    return;
+  }
+
+  box.innerHTML = [...orders].reverse().map(o => `
+
+    <div class="order-card">
+
+      <h3>Order: ${o.orderId}</h3>
+
+      <p>Date: ${o.date}</p>
+
+      <p>Customer: ${o.customer}</p>
+
+      <p>
+        Items:
+        ${o.items.map(i =>
+          i.name + " × " + i.quantity
+        ).join(", ")}
+      </p>
+
+      <h3 style="color:#c35f87">
+        Total: ₹${money(o.total)}
+      </h3>
+
+      <p>Status: ${o.status}</p>
+
+    </div>
+
+  `).join("");
+}
+
+// ===================================
+// START WEBSITE
+// ===================================
+
+displayCategories();
+displayProducts();
+displayWishlist();
+displayCart();
+loadCustomer();
+displayOrders();
+
+</script>
+</body>
+</html>
